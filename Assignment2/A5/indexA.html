@@ -43,11 +43,7 @@
     var allImages = [];
     var currentSlide = 0; 
     var aniType = "fading";
-    <iframe
-  src='index.html#https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Long-crested_eagle_%28Lophaetus_occipitalis%29_3.jpg/450px-Long-crested_eagle_%28Lophaetus_occipitalis%29_3.jpg,https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Red-browed_Finch_-_Penrith.jpg/450px-Red-browed_Finch_-_Penrith.jpg,https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/European_bee-eaters_%28Merops_apiaster%29_with_dragonflies.jpg/675px-European_bee-eaters_%28Merops_apiaster%29_with_dragonflies.jpg,https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/White-cheeked_Honeyeater_-_Maddens_Plains.jpg/450px-White-cheeked_Honeyeater_-_Maddens_Plains.jpg,fading'> </iframe>
 
-<iframe
-  src='index.html#https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Balantiocheilos_melanopterus_-_Karlsruhe_Zoo_02.jpg/787px-Balantiocheilos_melanopterus_-_Karlsruhe_Zoo_02.jpg,https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Red_Fish_at_Papahānaumokuākea_%28cropped%29.jpg/528px-Red_Fish_at_Papahānaumokuākea_%28cropped%29.jpg,https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/2017%2C_cuba%2C_jardines_aggressor%2C_los_indios%2C_nassau_grouper_maw_%2836883128693%29.jpg/675px-2017%2C_cuba%2C_jardines_aggressor%2C_los_indios%2C_nassau_grouper_maw_%2836883128693%29.jpg,https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/2017%2C_cuba%2C_jardines_aggressor%2C_playa_bonita%2C_spineyhead_blennie_%2823700572188%29.jpg/600px-2017%2C_cuba%2C_jardines_aggressor%2C_playa_bonita%2C_spineyhead_blennie_%2823700572188%29.jpg,https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Andinoacara_rivulatus_-_Karlsruhe_Zoo_01_edit1.jpg/802px-Andinoacara_rivulatus_-_Karlsruhe_Zoo_01_edit1.jpg,sliding'></iframe>
     function start(){
       var hash = window.location.hash.replace("#","");
       allImages = hash.split(",");
@@ -70,25 +66,43 @@
       document.getElementById("numContainer").innerHTML = markup;
 
       if(aniType == "fading"){
-            var allImgObjs = document.getElementsByClassName("slide")
+        
+        // complete this
+        var allImgObjs = document.getElementsByClassName("slide")
       var allNumObjs = document.getElementsByClassName("num")
-      document.getElementById("container").style.marginLeft = -currentSlide * 100 + "vw";
+      
+      for(var i = 0; i< allImgObjs.length; i++) {
+          if(i==currentSlide){
+            allImgObjs[i].style.opacity="1";
+            allNumObjs[i].className = "num active";
+          }
+          else{
+          allImgObjs[i].style.opacity = "0";
+          allNumObjs[i].className = "num"; 
+        }
+        }
+      }
+      else{
+      var allImgObjs = document.getElementsByClassName("slide")
+      var allNumObjs = document.getElementsByClassName("num")
       for(var i = 0; i < allImgObjs.length; i++){
         if(i==currentSlide){
           allNumObjs[i].className = "num active"; 
-      }
-      else{
-        // complete this
-        allNumObjs[i].className = "num";
-        
+        }
+        else{
+          allNumObjs[i].className = "num"; 
+        }
+      } 
+
+
       }
       goToCurrentSlide();
     }
-
+    
     var goPrev = function(){
       currentSlide = currentSlide - 1
       if(currentSlide < 0){
-        currentSlide = allImages.length - 1;
+        currentSlide = allImages.length;
       }
       goToCurrentSlide();
     }
@@ -108,25 +122,27 @@
 
     var goToCurrentSlide = function(){
       if(aniType == "fading"){
+        // complete this
         var allImgObjs = document.getElementsByClassName("slide")
       var allNumObjs = document.getElementsByClassName("num")
-      for(var i = 0; i < allImgObjs.length; i++){
-        if(i==currentSlide){
-          allImgObjs[i].style.opacity = "1";
-          allNumObjs[i].className = "num active"; 
-        }
-        else{
-          allImgObjs[i].style.opacity = "0";
+      
+        for(var i = 0; i < allImages.length; i++){
+          if(i==currentSlide){
+            allImgObjs[i].style.opacity = "1";
+            allNumObjs[i].className = "num active"; 
+      }
+      else{
+        // complete this
+        allImgObjs[i].style.opacity = "0";
           allNumObjs[i].className = "num"; 
       }
     }
-
-
+      }
+    }
   </script>
 </head>
 
 <body onload='start()'>
-    
   <div id='container'>
   </div>
   <div id='numContainer'>
