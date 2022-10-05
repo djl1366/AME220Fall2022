@@ -97,8 +97,8 @@ body{
 function refreshClock()
 {
   var now = new Date();
-  var hash = document.getElementById("timezone").value 
-  
+  var hash = document.getElementById("timezone").value
+  document.getElementById("timezone").value
   if(hash.length == 0){
     hash = "0";
   }
@@ -117,7 +117,6 @@ function refreshClock()
   }
   var m = adjustedNow.getMinutes();
   var s = adjustedNow.getSeconds();
-  
   var sAng = (6 * s) - 90;
   document.getElementById("sec").style.transform = "translate(150px, 150px) rotate(" + sAng + "deg)";
   var mAng = (6 * m) - 90;
